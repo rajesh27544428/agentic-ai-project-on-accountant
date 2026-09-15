@@ -4,8 +4,8 @@ from typing import Optional
 class MarketplaceOrder(BaseModel):
     order_id: str
     invoice_number: str
-    order_status: str       # "Delivered", "Cancelled", "Returned"
-    payment_mode: str       # "COD" or "e-Payment"
+    order_status: str
+    payment_mode: str
     invoice_amount: float
     total_deductions: float = 0.0
     net_payout: float = 0.0

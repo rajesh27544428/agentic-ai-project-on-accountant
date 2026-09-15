@@ -9,7 +9,7 @@ st.markdown("Automated pipeline for monthly GST/Sales report filtering, COD audi
 
 st.sidebar.header("Data Source")
 uploaded_file = st.sidebar.file_uploader(
-    "Upload Monthly GST / Sales Report", 
+    "Upload Monthly GST / Sales Report / Bank Statement", 
     type=["xlsx", "xls", "csv"]
 )
 
@@ -23,7 +23,7 @@ if uploaded_file is not None:
     st.dataframe(raw_df.head(5), use_container_width=True)
 
     if st.button("Run Audit & Settlement Pipeline"):
-        with st.spinner("Filtering non-delivered orders & computing charge deductions..."):
+        with st.spinner("Executing reconciliation & computing platform fee deductions..."):
             out1, out2 = process_marketplace_reports(raw_df)
 
             tab1, tab2 = st.tabs([
@@ -57,4 +57,4 @@ if uploaded_file is not None:
 
             st.success("Reconciliation complete. All operational criteria verified.")
 else:
-    st.info("Please upload a monthly sales/GST report (.xlsx or .csv) from the sidebar to begin.")
+    st.info("Please upload a file (.xlsx or .csv) from the sidebar to begin.")
