@@ -1,6 +1,0 @@
-
-    Moglix B2B Fee Schedule 2026:
-    - Commission Charge: 10% on gross order value for industrial equipment.
-    - Shipping Fee: Flat 3% on gross value.
-    - COD Fee: Flat ₹30.00 for non-prepaid orders.
-    

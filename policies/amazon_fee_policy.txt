@@ -1,7 +1,0 @@
-
-    Amazon Marketplace Fee Schedule 2026:
-    - Standard Referral Commission: 8% on gross order value for general categories.
-    - Shipping & Logistics Handling Fee: 4% on gross order value.
-    - Cash on Delivery (COD) Doorstep Collection Fee: Flat ₹25.00 per delivered order.
-    - Dispute Settlement Window: Discrepancies must be flagged within 30 days of payout.
-    
