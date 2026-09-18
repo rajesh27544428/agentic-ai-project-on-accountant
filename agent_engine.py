@@ -14,27 +14,27 @@ class AccountantAgent:
         """Agent Tool: Audits dataset against retrieved policy rules."""
         df = raw_df.copy()
         df.columns = [str(c).strip().lower().replace(" ", "_") for c in df.columns]
-        
+
         # Safely find amount column, or default to the last numeric column / column
         amt_cols = [c for c in df.columns if any(k in c for k in ["amount", "total", "val", "price", "credit", "net"])]
         amt_col = amt_cols[0] if amt_cols else df.columns[-1]
-        
+
         # Safely find invoice / order column
         inv_cols = [c for c in df.columns if any(k in c for k in ["inv", "order", "id", "ref", "sl"])]
         inv_col = inv_cols[0] if inv_cols else df.columns[0]
-        
+
         df[amt_col] = pd.to_numeric(df[amt_col], errors='coerce').fillna(0.0)
-        
+
         # Retrieve policy rules via RAG tool
         amazon_rules = self.retrieve_platform_rules("Amazon")
-        
+
         # Calculations derived from policy knowledge base
         df['expected_commission_8pct'] = (df[amt_col] * 0.08).round(2)
         df['expected_logistics_4pct'] = (df[amt_col] * 0.04).round(2)
         df['total_deductions'] = df['expected_commission_8pct'] + df['expected_logistics_4pct']
         df['net_payout'] = df[amt_col] - df['total_deductions']
         df['audit_status'] = "Verified via AI Agent Policy RAG"
-        
+
         return df, amazon_rules
 
     def generate_dispute_letter(self, order_id: str, overcharge_amount: float, platform: str = "Amazon") -> str:
